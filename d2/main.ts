@@ -9,7 +9,7 @@ const intents = {
   Z: 'beats',
 }
 
-function getMyShapeFromIntent(elfMove: string, intent: string) {
+function getMyShapeFromIntent(elfMove: keyof typeof shapes.X, intent: keyof typeof shapes) {
   for (const shape of Object.values(shapes)) {
     const shapeIntentTargets = shape[intents[intent]]
     if (shapeIntentTargets.includes(elfMove)) return shape
