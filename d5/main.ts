@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/day/4
+// https://adventofcode.com/2022/day/5
 
 const file = await Deno.readTextFile('input.txt')
 
@@ -27,7 +27,9 @@ crateMovesInput.split('\n').forEach((moveInput) => {
   for (let i = 0; i < moveCommand[0]; i += 1) {
     cratesToMove.push(crateStacks[moveCommand[1] - 1].pop())
   }
-  cratesToMove.reverse().forEach((crate) => crateStacks[moveCommand[2] - 1].push(crate || ' ERROR '))
+  cratesToMove
+    .reverse()
+    .forEach((crate) => crateStacks[moveCommand[2] - 1].push(crate || ' ERROR '))
 })
 
 let output = ''
