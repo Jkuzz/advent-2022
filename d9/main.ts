@@ -49,7 +49,11 @@ console.log(visitedByTail.size)
 
 function moveRopeSegment(head: number[], tail: number[]) {
   const diff = [head[0] - tail[0], head[1] - tail[1]]
-  if (diff[0] > 1) {
+  if (Math.abs(diff[0]) + Math.abs(diff[1]) > 3) {
+    // diagonal move
+    const diagonalOffset = [clamp(diff[0], -1, 1), clamp(diff[1], -1, 1)]
+    tail = [head[0] - diagonalOffset[0], head[1] - diagonalOffset[1]]
+  } else if (diff[0] > 1) {
     tail = [head[0] - 1, head[1]]
   } else if (diff[0] < -1) {
     tail = [head[0] + 1, head[1]]
@@ -59,4 +63,8 @@ function moveRopeSegment(head: number[], tail: number[]) {
     tail = [head[0], head[1] + 1]
   }
   return tail
+}
+
+function clamp(num: number, min: number, max: number) {
+  return Math.min(Math.max(num, min), max)
 }
